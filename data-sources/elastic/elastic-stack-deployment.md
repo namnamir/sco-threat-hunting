@@ -19,7 +19,7 @@ sudo apt-get update && sudo apt-get install elasticsearch
 --------------------------- Security autoconfiguration information ------------------------------
 (...)
 
-The generated password for the elastic built-in superuser is : 4jHQjCytgknDP1c1GT9
+The generated password for the elastic built-in superuser is : <REDACTED>
 
 (...)
 ```

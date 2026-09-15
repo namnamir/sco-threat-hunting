@@ -1,0 +1,83 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)
+
+Copyright (c) 2026 soc-threat-hunting contributors
+
+This work — including all detection rules, hunt documents, queries, data-source
+notes and documentation in this repository — is licensed under the Creative
+Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+Full legal code:
+  https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+Human-readable summary (not a substitute for the legal code):
+  https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+
+YOU ARE FREE TO
+---------------
+  Share    — copy and redistribute the material in any medium or format.
+  Adapt    — remix, transform, and build upon the material.
+
+The licensor cannot revoke these freedoms as long as you follow the license
+terms.
+
+
+UNDER THE FOLLOWING TERMS
+-------------------------
+  Attribution   — You must give appropriate credit, provide a link to this
+                  repository and to the license, and indicate if changes were
+                  made. You may do so in any reasonable manner, but not in any
+                  way that suggests the licensor endorses you or your use.
+
+  NonCommercial — You may not use the material for commercial purposes. A
+                  commercial purpose is one primarily intended for or directed
+                  toward commercial advantage or monetary compensation. This
+                  includes, but is not limited to, reselling these rules,
+                  bundling them into a commercial product or managed security
+                  service, or delivering them as part of a paid consulting or
+                  MSSP/MDR engagement.
+
+  ShareAlike    — If you remix, transform, or build upon the material, you must
+                  distribute your contributions under the same license as the
+                  original.
+
+  No additional restrictions — You may not apply legal terms or technological
+                  measures that legally restrict others from doing anything the
+                  license permits.
+
+
+INTERNAL USE BY DEFENDERS
+-------------------------
+Using these rules to defend your own organisation's network — including a
+for-profit organisation defending itself — is NOT considered a commercial use
+under this license. Selling, sublicensing, or delivering them as a paid service
+to third parties IS.
+
+If you need a commercial license, open an issue in this repository to arrange
+one.
+
+
+PLEASE NOTE
+-----------
+This is a source-available, NOT an open-source license: the NonCommercial term
+means it does not meet the Open Source Definition or the Free Software
+Definition. This is intentional.
+
+
+THIRD-PARTY MATERIAL
+--------------------
+Some content is derived from, or inspired by, upstream projects that carry their
+own licenses (for example Sigma rules, Splunk Security Content / ESCU, Elastic
+detection-rules, and Microsoft Sentinel community content). Where that is the
+case, the individual rule file records the upstream source and its license in
+its `references` and `license` metadata, and that upstream license governs that
+content. See NOTICE.md.
+
+
+NO WARRANTY
+-----------
+Unless otherwise separately undertaken by the Licensor, to the extent possible,
+the Licensor offers the Licensed Material as-is and as-available, and makes no
+representations or warranties of any kind concerning the Licensed Material.
+Detection logic is environment-specific: every query here must be reviewed,
+tuned and tested against your own data before it is relied upon.

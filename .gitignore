@@ -1,0 +1,47 @@
+# OneDrive / Windows
+~$*
+*.tmp
+*.laccdb
+desktop.ini
+Thumbs.db
+*-Conflict-*
+*(conflicted copy*
+ehthumbs.db
+
+# macOS / Linux
+.DS_Store
+*~
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.tox/
+.pytest_cache/
+
+# Never commit these
+*.env
+.env*
+!.env.example
+*.pem
+*.key
+*.pfx
+credentials*
+secrets*
+*.local.yml
+*.local.yaml
+
+# Exported data / evidence — keep raw logs out of a public repo
+*.evtx
+*.pcap
+*.pcapng
+*.csv.gz
+exports/
+samples/raw/
