@@ -1,0 +1,14 @@
+// Use: threat-hunt
+// Status: experimental
+// Data source: logs-endpoint.events.process-* with Elastic Defend process events
+// ATT&CK: T1059.001, T1027, T1105
+process where host.os.type == "windows" and event.type == "start" and
+  process.name : ("powershell.exe", "pwsh.exe") and
+  process.command_line : (
+    "*-enc *", "*-encodedcommand *", "*FromBase64String*",
+    "*DownloadString*", "*DownloadFile*", "*Invoke-Expression*",
+    "* IEX *", "*-ExecutionPolicy Bypass*", "*Net.WebClient*"
+  )
+
+// Hunt use: review results with host, user, parent process, and network data.
+// Promote to an alert only after measuring approved administrative activity.

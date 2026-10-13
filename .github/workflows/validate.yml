@@ -1,0 +1,24 @@
+name: Validate repository
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate metadata and IDs
+        shell: pwsh
+        run: ./scripts/validate-rules.ps1
+      - name: Check generated index
+        shell: pwsh
+        run: ./scripts/build-index.ps1; git diff --exit-code -- references/detection-index.csv
+      - name: Check for likely secrets
+        shell: bash
+        run: '! grep -RInE "(AKIA[0-9A-Z]{16}|-----BEGIN (RSA|EC|OPENSSH) PRIVATE KEY-----|password[[:space:]]*[:=][[:space:]]*[^<])" --exclude-dir=.git .'

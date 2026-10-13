@@ -1,0 +1,31 @@
+name: Suspicious PowerShell Process Execution Hunt
+id: 0f68ac66-404e-4bce-bf30-3d89d6b32469
+version: 1
+date: '2026-09-15'
+author: soc-threat-hunting contributors
+kind: detection
+use: threat-hunt
+status: experimental
+platforms:
+  - elastic
+query_file: T1059.001-suspicious-powershell-elastic.eql
+log_source:
+  product: windows
+  service: Elastic Defend process events
+mitre:
+  - T1059.001
+  - T1027
+  - T1105
+data_required:
+  - process events with host.os.type, process.name, process.command_line, user, and parent process fields
+triage:
+  - Review the complete process tree and command-line context.
+  - Correlate with network events and script block logging where available.
+  - Record approved administrative tools before considering alert promotion.
+false_positives:
+  - Software deployment and endpoint management activity.
+tuning:
+  - Baseline signed scripts, parent processes, and administrative hosts.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+license: CC BY-NC-SA 4.0

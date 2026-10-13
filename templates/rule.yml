@@ -1,0 +1,32 @@
+name: Rule name
+id: 00000000-0000-0000-0000-000000000000
+version: 1
+date: 'YYYY-MM-DD'
+author: Your name
+kind: detection
+use: soc-alert
+status: experimental
+severity: medium
+description: What behavior is identified and why it matters.
+platforms:
+  - splunk
+log_source:
+  product: windows
+  service: sysmon
+  event_id: 1
+mitre:
+  - T1059.001
+query: |
+  Paste a complete, runnable query here.
+data_required:
+  - Name the required source, event, and fields.
+triage:
+  - Verify the account, host, parent process, and command line.
+  - Check whether the activity is approved and expected.
+false_positives:
+  - Describe known legitimate activity.
+tuning:
+  - Describe allowlists, thresholds, and baseline requirements.
+references:
+  - https://attack.mitre.org/
+license: CC BY-NC-SA 4.0

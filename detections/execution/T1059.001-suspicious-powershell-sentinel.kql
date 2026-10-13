@@ -1,0 +1,16 @@
+// Use: soc-alert
+// Status: experimental | Severity: medium
+// Data source: Microsoft Defender for Endpoint DeviceProcessEvents or equivalent
+// ATT&CK: T1059.001, T1027, T1105
+DeviceProcessEvents
+| where Timestamp >= ago(1h)
+| where FileName in~ ("powershell.exe", "pwsh.exe")
+| where ProcessCommandLine matches regex @"(?i)(-enc(odedcommand)?\s|frombase64string|downloadstring|downloadfile|invoke-expression|\biex\b|executionpolicy\s+bypass|net\.webclient)"
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, FileName, ProcessCommandLine, ReportId
+| order by Timestamp desc
+
+// Alert use: configure the time window, entity mappings, suppression, and
+// response action in the Sentinel analytics rule for your tenant.
+// Required fields: Timestamp, DeviceName, AccountName, FileName,
+// ProcessCommandLine, InitiatingProcessFileName.

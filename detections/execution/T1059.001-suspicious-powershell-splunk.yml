@@ -1,0 +1,43 @@
+name: Suspicious PowerShell Process Creation
+id: d4e7a7d9-bc4c-4c4d-9f3d-6e6b55cb8db4
+version: 1
+date: '2026-09-15'
+author: soc-threat-hunting contributors
+kind: detection
+use: soc-alert
+status: experimental
+severity: medium
+platforms:
+  - splunk
+log_source:
+  product: windows
+  service: sysmon
+  event_id: 1
+mitre:
+  - T1059.001
+  - T1027
+  - T1105
+description: Alert on PowerShell process creation when command-line indicators show encoded execution, remote content retrieval, or execution policy bypass.
+query: |
+  index=sysmon sourcetype=XmlWinEventLog:Microsoft-Windows-Sysmon/Operational EventCode=1
+  (match(lower(Image), "\\powershell(\\.exe)?$") OR match(lower(OriginalFileName), "powershell.exe$"))
+  | eval command_line=coalesce(CommandLine, "")
+  | where match(command_line, "(?i)(-enc(odedcommand)?\\s|frombase64string|downloadstring|downloadfile|invoke-expression|iex\\s|executionpolicy\\s+bypass|net\\.webclient)")
+  | eval rule_name="Suspicious PowerShell Process Creation", severity="medium"
+  | table _time ComputerName User ParentImage Image OriginalFileName CommandLine rule_name severity
+  | sort - _time
+data_required:
+  - Sysmon Event ID 1 with Image, OriginalFileName, CommandLine, ParentImage, User, and ComputerName
+triage:
+  - Validate the command line, script path, parent process, user, and host role.
+  - Check PowerShell 4103/4104 and network events for the same process or host.
+  - Compare the activity with approved software deployment and administration tooling.
+  - Escalate when the command is encoded or downloads content and the parent or user is unusual.
+false_positives:
+  - Endpoint management, software deployment, and approved administration scripts.
+tuning:
+  - Add signed publisher and management-host allowlists after collecting baseline volume.
+  - Set a per-host and per-user threshold if deployment tooling creates repeated events.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+license: CC BY-NC-SA 4.0

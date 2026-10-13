@@ -1,0 +1,32 @@
+name: Suspicious PowerShell Process Creation
+id: 3e2ab139-53c5-457b-8a8b-ef963f51af27
+version: 1
+date: '2026-09-15'
+author: soc-threat-hunting contributors
+kind: detection
+use: soc-alert
+status: experimental
+severity: medium
+platforms:
+  - sentinel
+query_file: T1059.001-suspicious-powershell-sentinel.kql
+log_source:
+  product: Microsoft Defender for Endpoint
+  service: DeviceProcessEvents
+mitre:
+  - T1059.001
+  - T1027
+  - T1105
+data_required:
+  - DeviceProcessEvents with Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, and InitiatingProcessFileName
+triage:
+  - Validate the process tree, account, device role, and command-line intent.
+  - Pivot to DeviceNetworkEvents and DeviceEvents for the same ReportId or host.
+  - Suppress only documented, stable administration workflows.
+false_positives:
+  - Endpoint management and deployment systems.
+tuning:
+  - Replace the one-hour window and response action with tenant-specific values.
+references:
+  - https://learn.microsoft.com/azure/defender-for-cloud/alerts-reference
+license: CC BY-NC-SA 4.0

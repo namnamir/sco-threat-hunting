@@ -1,0 +1,5 @@
+name,id,kind,use,status,severity,path
+Suspicious PowerShell Usage Hunt,8c45fbb5-4b77-4b03-a0f6-4a4c1de2e76c,hunt,threat-hunt,experimental,,hunts/T1059.001-suspicious-powershell-usage.yml
+Suspicious PowerShell Process Creation,d4e7a7d9-bc4c-4c4d-9f3d-6e6b55cb8db4,detection,soc-alert,experimental,medium,detections/execution/T1059.001-suspicious-powershell-splunk.yml
+Suspicious PowerShell Process Creation,3e2ab139-53c5-457b-8a8b-ef963f51af27,detection,soc-alert,experimental,medium,detections/execution/T1059.001-suspicious-powershell-sentinel.yml
+Suspicious PowerShell Process Execution Hunt,0f68ac66-404e-4bce-bf30-3d89d6b32469,detection,threat-hunt,experimental,,detections/execution/T1059.001-suspicious-powershell-elastic.yml
